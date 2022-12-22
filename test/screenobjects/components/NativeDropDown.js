@@ -23,12 +23,13 @@ class NativeDropDown {
     return (await this.dropDownOptionsList.length) - 1;
   }
 
-  async getDropDownOptionsList() {
+  async getDropDownOptionsTextList() {
     const optionsList = [];
     await this.dropDownOptionsList.forEach(async (element) => {
       const text = await element.getText();
       optionsList.push(text);
     });
+    optionsList.shift(); 
     return optionsList;
   }
 
@@ -38,11 +39,6 @@ class NativeDropDown {
 
   async selectListOption(optionToSelect) {
     await CommonActions.doClickOn(this.dropDownOptionsList[optionToSelect]);
-  }
-
-  checkOptionSelectedIndex(dropDownOptionsTextList, text) {
-    const index = dropDownOptionsTextList.indexOf(text);
-    return index;
   }
 }
 
